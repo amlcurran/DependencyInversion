@@ -10,16 +10,22 @@ class DependencyInversionTests: XCTestCase {
 	func testWhenAFruitHasBeenCached_ItIsFetchedFromTheCache() {
 
 	}
+
+	func testWhenAFruitHasNotBeenCached_ButItFailsToDownload_TheCompletionBlockIsCalledWithNil() {
+
+	}
     
 }
 
+// Here are the implementations
+
 class CachingFruitFetcher {
 
-	func fetchFruit(completion: (Fruit) -> Void) {
+	func fetchFruit() -> Fruit? {
 		if let name = UserDefaults.standard.string(forKey: "lastFruit") {
-			completion(Fruit(name: name))
+			return Fruit(name: name)
 		} else {
-			URLSessionFruitFetcher.instance.loadFruitFromInternet(completion: completion)
+			return URLSessionFruitFetcher.instance.loadFruitFromInternet()
 		}
 	}
 
@@ -33,9 +39,9 @@ class URLSessionFruitFetcher {
 
 	static let instance = URLSessionFruitFetcher()
 
-	func loadFruitFromInternet(completion: (Fruit) -> Void) {
+	func loadFruitFromInternet() -> Fruit? {
 		// pretend this loads a fruit from some API
-		completion(Fruit(name: "Kiwi"))
+		return Fruit(name: "Kiwi")
 	}
 
 }
