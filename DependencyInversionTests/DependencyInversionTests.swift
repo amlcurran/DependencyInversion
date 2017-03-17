@@ -1,36 +1,41 @@
-//
-//  DependencyInversionTests.swift
-//  DependencyInversionTests
-//
-//  Created by Alex on 17/03/2017.
-//  Copyright © 2017 novoda. All rights reserved.
-//
-
 import XCTest
-@testable import DependencyInversion
+import Foundation
 
 class DependencyInversionTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+	func testWhenAFruitHasNotBeenCached_ItIsDownloaded() {
+
+	}
+
+	func testWhenAFruitHasBeenCached_ItIsFetchedFromTheCache() {
+
+	}
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+}
+
+class CachingFruitFetcher {
+
+	func fetchFruit(completion: (Fruit) -> Void) {
+		if let name = UserDefaults.standard.string(forKey: "lastFruit") {
+			completion(Fruit(name: name))
+		} else {
+			URLSessionFruitFetcher.instance.loadFruitFromInternet(completion: completion)
+		}
+	}
+
+}
+
+struct Fruit {
+	let name: String
+}
+
+class URLSessionFruitFetcher {
+
+	static let instance = URLSessionFruitFetcher()
+
+	func loadFruitFromInternet(completion: (Fruit) -> Void) {
+		// pretend this loads a fruit from some API
+		completion(Fruit(name: "Kiwi"))
+	}
+
 }
