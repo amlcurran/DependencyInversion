@@ -3,15 +3,15 @@ import Foundation
 
 class DependencyInversionTests: XCTestCase {
     
-	func testWhenAFruitHasNotBeenCached_ItIsDownloaded() {
+	func testWhenAFruitHasNotBeenCached_ItIsLoadedFromTheInternet() {
 
 	}
 
-	func testWhenAFruitHasBeenCached_ItIsFetchedFromTheCache() {
+	func testWhenAFruitHasBeenCached_ItIsLoadedFromTheCache() {
 
 	}
 
-	func testWhenAFruitHasNotBeenCached_ButItFailsToDownload_TheCompletionBlockIsCalledWithNil() {
+	func testWhenAFruitHasNotBeenCached_ButLoadingFromTheInternetFails_NoFruitIsReturned() {
 
 	}
     
