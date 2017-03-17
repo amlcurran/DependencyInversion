@@ -151,6 +151,7 @@
 					FAD118501E7C129A00805F65 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
+						TestTargetID = FAD1183C1E7C129A00805F65;
 					};
 				};
 			};
@@ -367,6 +368,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.novoda.DependencyInversionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DependencyInversion.app/DependencyInversion";
 			};
 			name = Debug;
 		};
@@ -379,6 +381,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.novoda.DependencyInversionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DependencyInversion.app/DependencyInversion";
 			};
 			name = Release;
 		};

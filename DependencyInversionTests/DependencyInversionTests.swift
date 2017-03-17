@@ -4,7 +4,7 @@ import Foundation
 class DependencyInversionTests: XCTestCase {
     
 	func testWhenAFruitHasNotBeenCached_ItIsDownloaded() {
-
+		
 	}
 
 	func testWhenAFruitHasBeenCached_ItIsFetchedFromTheCache() {
@@ -25,7 +25,7 @@ class CachingFruitFetcher {
 		if let name = UserDefaults.standard.string(forKey: "lastFruit") {
 			return Fruit(name: name)
 		} else {
-			return URLSessionFruitFetcher.instance.loadFruitFromInternet()
+			return try? InternetFruitFetcher.instance.loadFruitFromInternet()
 		}
 	}
 
@@ -35,11 +35,11 @@ struct Fruit {
 	let name: String
 }
 
-class URLSessionFruitFetcher {
+class InternetFruitFetcher {
 
-	static let instance = URLSessionFruitFetcher()
+	static let instance = InternetFruitFetcher()
 
-	func loadFruitFromInternet() -> Fruit? {
+	func loadFruitFromInternet() throws -> Fruit {
 		// pretend this loads a fruit from some API
 		return Fruit(name: "Kiwi")
 	}
